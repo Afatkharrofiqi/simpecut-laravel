@@ -19,6 +19,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/union', 'HomeController@union');
+Route::get('/uuid/{uuid}', 'HomeController@uuid');
+
 Route::resource('jabatan', 'JabatanController');
 Route::resource('departemen', 'DepartemenController');
 Route::get('pegawai/search', 'PegawaiController@index')->name('pegawai.search');
