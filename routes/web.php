@@ -21,6 +21,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/union', 'HomeController@union');
 Route::get('/uuid/{uuid}', 'HomeController@uuid');
+Route::get('/call-store-insert', 'HomeController@storeprocedureInsert');
+Route::get('/call-store-get/{id}', 'HomeController@storeprocedureGet');
 
 Route::resource('jabatan', 'JabatanController');
 Route::resource('departemen', 'DepartemenController');
