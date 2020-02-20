@@ -35,6 +35,12 @@
     </div>
 </div>
 <div class="form-group">
+    {{ Form::label('img_path', 'Upload Foto &nbsp;', ['class'=>'control-label col-md-2']) }}
+    <div class="col-md-4">
+        {{ Form::file('img_path', ['class'=>'form-control']) }}
+    </div>
+</div>
+<div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
         {{ Form::submit('Save Data',['class'=>'btn btn-success']) }}
     </div>

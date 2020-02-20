@@ -11,6 +11,7 @@ use App\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
@@ -58,10 +59,14 @@ class PegawaiController extends Controller
     {
         DB::beginTransaction();
         try {
+            $fileName = time().Auth::user()->id.'.png';
+            $request->file('img_path')->storeAs('public/pegawai', $fileName);
+
             $user = new User();
             $user->name     = $request->nama;
             $user->email    = $request->email;
             $user->password = Hash::make($request->password);
+            $user->img_path = $fileName;
             $user->save();
 
             $pegawai = new Pegawai();

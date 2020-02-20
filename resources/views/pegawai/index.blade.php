@@ -28,6 +28,7 @@
                         <th>Jabatan</th>
                         <th>Departemen</th>
                         <th>Email</th>
+                        <th>Foto</th>
                         <th colspan="2">Action</th>
                     </tr>
                     </thead>
@@ -40,10 +41,20 @@
                             <td>{{ $pegawai->departemen->name }}</td>
                             <td>{{ $pegawai->user->email }}</td>
                             <td>
+                                @if($pegawai->user->img_path)
+                                    <img width="50px" src="{{ asset('storage/pegawai/'.$pegawai->user->img_path) }}" alt="{{ $pegawai->name }}">
+                                @else
+                                    <img width="50px" src="{{ asset('storage/pegawai/place_holder.jpg') }}" alt="{{ $pegawai->name }}">
+                                @endif
+                            </td>
+                            <td>
                                 {{ link_to(route('pegawai.edit', ['id'=>$pegawai->id]), 'Edit', ['class'=>'btn btn-primary']) }} &nbsp;
                                 @component('partials.delete_form')
                                     @slot('route')
                                         {{ route('pegawai.destroy', ['id'=>$pegawai->id]) }}
+                                    @endslot
+                                    @slot('id')
+                                        Hapus-{{ $pegawai->id }}
                                     @endslot
                                 @endcomponent
                             </td>
